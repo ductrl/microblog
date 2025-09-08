@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, get_flashed_messages
+from flask import render_template, flash, redirect, get_flashed_messages, url_for
 from app import app
 from app.forms import LoginForm
 
@@ -25,6 +25,6 @@ def login():
     form = LoginForm()
     if form.validate_on_submit(): # return True if the browser sends a POST request but False if the browser sends a GET request
         flash(f'Login requested for user {form.username.data}, remember_me = {form.remember_me.data}')
-        return redirect('/index')
+        return redirect(url_for('index'))
 
     return render_template('login.html', title='Sign In', form=form)
